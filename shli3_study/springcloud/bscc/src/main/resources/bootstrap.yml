@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: bscc-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/the-three-little-squirrels/java-study.git
+          username: shli33
+          password: lshjjk123
+          search-paths: shli3_study/springcloud/config/{application}
+      profile: dev
+      label: master
+server:
+  port: 1020
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1010/eureka/

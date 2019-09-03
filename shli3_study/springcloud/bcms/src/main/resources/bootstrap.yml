@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: bcms-server
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceid: bscc-server
+      profile: dev
+      label: master
+      name: bcms
+#      定义多个不同的环境配置
+  profiles:
+    active: dev
+
+server:
+  port: 2010
+
+
+eureka:
+  client:
+#    healthcheck:
+#      enabled: true # 开启健康检查（需要spring-boot-starter-actuator依赖）
+      # eureka.client.healthcheck.enabled=true 只应该在application.yml中设置。如果设置在bootstrap.yml中将会导致一些不良的副作用，例如在Eureka中注册的应用名称是UNKNOWN等。
+    service-url:
+      defaultZone: http://localhost:1010/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 5 # 续约更新时间间隔（默认30秒） 表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance。
+    lease-renewal-interval-in-seconds: 10 # 续约到期时间（默认90秒）表示eureka client发送心跳给server端的频率。如果在leaseExpirationDurationInSeconds后，server端没有收到client的心跳，则将摘除该instance。
+
